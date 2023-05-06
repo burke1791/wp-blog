@@ -15,12 +15,6 @@ Parameters:
     MinLength: 1
     MaxLength: 41
     AllowedPattern: ^[a-zA-Z0-9]*$
-  DBPassword:
-    NoEcho: true
-    Description: The database admin account password
-    Type: String
-    MinLength: 1
-    MaxLength: 41
   LatestAmazonLinuxAmiId:
     Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
     Default: '/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2'
@@ -210,7 +204,7 @@ Resources:
       BackupRetentionPeriod: 0
       AllocatedStorage: 20
       MasterUsername: !Ref DBUser
-      MasterUserPassword: !Ref DBPassword
+      MasterUserPassword: '{{resolve:ssm-secure:wp-db-pw:1}}'
       DBSubnetGroupName: !Ref DBSubnetGroup
       VPCSecurityGroups: 
         - !GetAtt "DBEC2SecurityGroup.GroupId"

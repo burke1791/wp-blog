@@ -27,6 +27,5 @@ jobs:
           name: BurkeBlog
           template: main.yml
           parameter-overrides: >-
-            DBName=${{ secrets.DB_NAME }}
-            DBUser=${{ secrets.DB_USER }}
-            DBPassword=${{ secrets.DB_PASSWORD }}
+            DBName=BurkeBlog
+            DBUser=burke
