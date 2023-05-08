@@ -18,6 +18,9 @@ Parameters:
   LatestAmazonLinuxAmiId:
     Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
     Default: '/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2'
+  KeyPair:
+    Type: String
+    Description: Key pair for connecting to the EC2 instance
 
 Resources:
   VPC:
@@ -155,7 +158,7 @@ Resources:
     Properties:
       InstanceType: t2.micro
       ImageId: !Ref LatestAmazonLinuxAmiId
-      KeyName: wp-kp
+      KeyName: !Ref KeyPair # created manually before deploying this template
       NetworkInterfaces:
         - AssociatePublicIpAddress: 'true'
           DeviceIndex: '0'

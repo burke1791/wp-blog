@@ -28,4 +28,5 @@ jobs:
           template: main.yml
           parameter-overrides: >-
             DBName=BurkeBlog,
-            DBUser=burke
+            DBUser=burke,
+            KeyPair=wp-kp
