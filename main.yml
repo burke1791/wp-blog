@@ -149,12 +149,19 @@ Resources:
         - Key: Name
           Value: WordPress-Stack
       VpcId: !Ref VPC
+  
+  Ec2KeyPair:
+    Type: AWS::EC2::KeyPair
+    Properties:
+      KeyName: wp-keypair
+      KeyType: ed25519
 
   LinuxEc2Instance:
     Type: AWS::EC2::Instance
     Properties:
       InstanceType: t2.micro
       ImageId: !Ref LatestAmazonLinuxAmiId
+      KeyName: wp-keypair
       NetworkInterfaces:
         - AssociatePublicIpAddress: 'true'
           DeviceIndex: '0'
